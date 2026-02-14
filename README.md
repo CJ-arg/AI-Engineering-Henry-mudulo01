@@ -30,13 +30,22 @@ El sistema recibe consultas de usuarios sobre diversos conflictos legales y devu
    - `OPENAI_API_KEY=tu_clave_aqui`
 
 ##  Ejecución
+
 Para procesar una consulta legal de prueba y ver el resultado en consola, ejecuta:
 ```bash
 python src/run_query.py
 ```
 
 ## El proyecto incluye validaciones automáticas para asegurar que la IA siempre devuelva los campos requeridos:
+```bash
 python -m pytest
+```
 
-#  Seguridad y Moderación 
-El asistente utiliza el endpoint de Moderación de OpenAI en el módulo safety.py. Este componente analiza la intención del usuario antes de procesar la consulta legal. Si se detecta contenido relacionado con violencia, odio o acoso, la solicitud se detiene automáticamente para proteger el sistema y optimizar el consumo de tokens.
+# Seguridad y Moderación 
+El asistente integra una Capa de Auditoría de Seguridad mediante el endpoint de Moderación de OpenAI en el módulo safety.py.
+
+A diferencia de los filtros estándar, este sistema implementa una moderación no bloqueante:
+
+* **Análisis en tiempo real:** Evalúa categorías sensibles como violencia, odio o acoso.
+* **Auditoría Informativa:** El sistema procesa la consulta y etiqueta el resultado en el campo `safety_audit`. Esto permite asistir en casos complejos (como accidentes o disputas) sin interrumpir el flujo, manteniendo un registro de seguridad para el profesional.
+* **Persistencia:** Cada auditoría se guarda junto a la respuesta legal en el historial de métricas para optimizar el control del sistema.

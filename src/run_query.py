@@ -106,6 +106,6 @@ def run_legal_query(user_question):
 
 if __name__ == "__main__":
     # Quick test to see if it works
-    question = "se me escapo el canario"
+    question = "me mordio un perro en la calle"
     result = run_legal_query(question)
     print(json.dumps(result, indent=2, ensure_ascii=False))
