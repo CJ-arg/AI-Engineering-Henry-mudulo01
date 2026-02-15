@@ -33,6 +33,7 @@ def apply_legal_filter(query):
         # Using Llama-3.3-70b for fast and free classification
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
+            temperature=0.1,
             messages=[
                 {"role": "system", "content": filter_prompt},
                 {"role": "user", "content": query}

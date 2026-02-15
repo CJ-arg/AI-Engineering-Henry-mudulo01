@@ -224,5 +224,47 @@
             "latency_ms": 979,
             "estimated_cost_usd": 0.0
         }
+    },
+    {
+        "timestamp": "2026-02-15T13:21:31.990446",
+        "query": " hace calor el vecino tiro un balde de agua y mojo mi ropa seca",
+        "status": "filtered",
+        "reasoning": "Se trata de un conflicto menor entre vecinos sin daños significativos, por lo que se considera un asunto trivial",
+        "suggestion": "Habla con tu vecino y explícale lo que sucedió, es posible que no se haya dado cuenta del daño causado y pueda disculparse o compensarte por el incidente",
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "llm_used": "Llama-3.3-70b (Groq)",
+            "latency_ms": 1135,
+            "estimated_cost_usd": 0.0
+        }
+    },
+    {
+        "timestamp": "2026-02-15T13:22:15.291300",
+        "query": " me robaron la bicicleta de garage",
+        "data": {
+            "answer": "Se trata de un robo de propiedad privada.",
+            "branch": "Derecho Penal",
+            "specialist": "Abogado penalista o Policía",
+            "confidence": 0.95,
+            "actions": [
+                "Denunciar el robo a la policía",
+                "Recopilar pruebas y testigos del hecho"
+            ]
+        },
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "llm_used": "GPT-4o-mini (OpenAI)",
+            "latency_ms": 2233,
+            "prompt_tokens": 419,
+            "completion_tokens": 71,
+            "total_tokens": 490,
+            "estimated_cost_usd": 0.000105
+        }
     }
 ]

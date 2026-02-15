@@ -94,6 +94,7 @@ def run_legal_query(user_question):
                 {"role": "user", "content": user_question}
             ],
             response_format={"type": "json_object"},
+            temperature=0.2,
             timeout=15.0
         )
         
