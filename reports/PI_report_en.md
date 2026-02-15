@@ -23,6 +23,12 @@ Each execution is recorded with the following data points:
 - **Imports in Python**: Managing relative imports between `src/` and `tests/` was solved by using `__init__.py` files and standardizing the execution from the root directory.
 - **Future Scope**: Implementation of a **RAG (Retrieval-Augmented Generation)** system would allow the assistant to quote specific legal articles from national codes, moving from a general advisor to a specialized jurisdiction expert.
 
+## 5. Multi-Model Orchestration & Cost-Efficiency
+To optimize operational overhead, I transitioned the architecture from a single-model inference to a **hybrid multi-agent pipeline**. 
+- **The Filter Agent (Groq/Llama 3.3)**: Acts as a high-speed legal triage layer. It classifies whether a query has legal merit before reaching paid endpoints. This agent handles trivial or non-legal queries with sub-second latency and zero API cost.
+- **The Specialist Agent (OpenAI/GPT-4o-mini)**: Serves as the high-reasoning legal consultant. It is only invoked for queries validated by the triage layer, ensuring that expensive compute resources are reserved for complex legal analysis.
+- **Unified Observability**: The system now tracks `llm_used` per query, allowing for clear auditing of cost-savings and model performance across different query types.
+
 ---
 **Author:** Carlos Janon AI Engineering 01
 **Date:** February 2026

@@ -1,0 +1,228 @@
+[
+    {
+        "timestamp": "2026-02-14T12:35:49.020083",
+        "query": "Me encontré el auto chocado en la puerta de mi casa y el culpable se dio a la fuga",
+        "data": {
+            "answer": "Situación de accidente automovilístico con responsabilidad no identificada.",
+            "branch": "Derecho Civil / Responsabilidad Extracontractual",
+            "specialist": "Abogado especialista en accidentes de tránsito o compañía de seguros",
+            "confidence": 0.9,
+            "actions": [
+                "Documentar el incidente con fotos y testigos",
+                "Reportar el hecho a la aseguradora y a la policía"
+            ]
+        },
+        "metrics": {
+            "latency_ms": 5260,
+            "prompt_tokens": 433,
+            "completion_tokens": 92,
+            "total_tokens": 525,
+            "estimated_cost_usd": 0.00012
+        }
+    },
+    {
+        "timestamp": "2026-02-14T13:33:41.036875",
+        "query": "Mi jefe no me pagó el sueldo de este mes y me bloqueó de WhatsApp",
+        "data": {
+            "answer": "Falta de pago de salario, lo que podría constituir una violación de derechos laborales.",
+            "branch": "Derecho Laboral",
+            "specialist": "Abogado laboralista o Ministerio de Trabajo",
+            "confidence": 0.95,
+            "actions": [
+                "Revisar contrato y derechos laborales",
+                "Contactar a un abogado laboralista"
+            ]
+        },
+        "metrics": {
+            "latency_ms": 1977,
+            "prompt_tokens": 429,
+            "completion_tokens": 82,
+            "total_tokens": 511,
+            "estimated_cost_usd": 0.000114
+        }
+    },
+    {
+        "timestamp": "2026-02-14T15:18:56.212500",
+        "query": "MIvecino me tira basura al patio todos los días",
+        "data": {
+            "answer": "Conflicto de convivencia por actos de disturbio y falta de respeto a la propiedad.",
+            "branch": "Derecho Civil / Contravencional",
+            "specialist": "Mediador comunitario o Abogado especializado en derecho civil",
+            "confidence": 0.9,
+            "actions": [
+                "Hablar directamente con el vecino para resolver el problema",
+                "Realizar una denuncia formal ante las autoridades correspondientes"
+            ]
+        },
+        "metrics": {
+            "latency_ms": 2922,
+            "prompt_tokens": 422,
+            "completion_tokens": 94,
+            "total_tokens": 516,
+            "estimated_cost_usd": 0.00012
+        }
+    },
+    {
+        "timestamp": "2026-02-14T15:47:01.896371",
+        "query": "se me escapo el canario",
+        "data": {
+            "answer": "Situación relacionada con la pérdida de un animal doméstico.",
+            "branch": "Derecho Civil",
+            "specialist": "Veterinario o asociación de animales",
+            "confidence": 0.5,
+            "actions": [
+                "Buscar en la vecindad",
+                "Publicar en redes sociales o grupos locales"
+            ]
+        },
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "latency_ms": 2318,
+            "prompt_tokens": 418,
+            "completion_tokens": 73,
+            "total_tokens": 491,
+            "estimated_cost_usd": 0.000107
+        }
+    },
+    {
+        "timestamp": "2026-02-14T15:47:02.256463",
+        "query": "Mi jefe no me pagó el sueldo de este mes y me bloqueó de WhatsApp",
+        "data": {
+            "answer": "Se presenta un caso de impago de salario y posible represalia por parte del empleador.",
+            "branch": "Derecho Laboral",
+            "specialist": "Abogado laboralista o Ministerio de Trabajo",
+            "confidence": 0.95,
+            "actions": [
+                "Solicitar la revisión del pago con la asesoría laboral",
+                "No firmar ningún documento sin asesoría legal"
+            ]
+        },
+        "metrics": {
+            "latency_ms": 2032,
+            "prompt_tokens": 429,
+            "completion_tokens": 88,
+            "total_tokens": 517,
+            "estimated_cost_usd": 0.000117
+        }
+    },
+    {
+        "timestamp": "2026-02-14T15:55:13.800652",
+        "query": "me mordio un perro en la calle",
+        "data": {
+            "answer": "Se presenta un caso de agresión por parte de un animal, potencialmente con daños personales.",
+            "branch": "Derecho Civil / Responsabilidad Extracontractual",
+            "specialist": "Abogado de responsabilidad civil",
+            "confidence": 0.9,
+            "actions": [
+                "Buscar atención médica para la herida",
+                "Recopilar evidencia del incidente (testigos, fotos)"
+            ]
+        },
+        "safety_audit": {
+            "is_flagged": true,
+            "analysis": "Content flagged by safety policies: violence"
+        },
+        "metrics": {
+            "latency_ms": 2249,
+            "prompt_tokens": 419,
+            "completion_tokens": 90,
+            "total_tokens": 509,
+            "estimated_cost_usd": 0.000117
+        }
+    },
+    {
+        "timestamp": "2026-02-15T11:24:28.575961",
+        "query": "hola tengo un problema con la obra social no me cubre una operacion ",
+        "data": {
+            "answer": "Conflicto con la cobertura de salud por negación de un procedimiento médico.",
+            "branch": "Derecho de la Salud / Derecho Civil",
+            "specialist": "Abogado especializado en derecho de la salud o defensor del pueblo",
+            "confidence": 0.9,
+            "actions": [
+                "Revisar el contrato de la obra social",
+                "Presentar un reclamo formal ante la obra social"
+            ]
+        },
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "latency_ms": 2185,
+            "prompt_tokens": 427,
+            "completion_tokens": 92,
+            "total_tokens": 519,
+            "estimated_cost_usd": 0.000119
+        }
+    },
+    {
+        "timestamp": "2026-02-15T12:07:20.827915",
+        "query": "mi jefe no me dejo entrar al trabajo ",
+        "data": {
+            "answer": "La situación podría entenderse como una acción de despido o injusta restricción al ingreso laboral.",
+            "branch": "Derecho Laboral",
+            "specialist": "Abogado laboralista o Ministerio de Trabajo",
+            "confidence": 0.9,
+            "actions": [
+                "No firmar documentos sin asesoría",
+                "Solicitar asesoramiento legal"
+            ]
+        },
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "latency_ms": 2140,
+            "prompt_tokens": 420,
+            "completion_tokens": 81,
+            "total_tokens": 501,
+            "estimated_cost_usd": 0.000112
+        }
+    },
+    {
+        "timestamp": "2026-02-15T12:10:03.742820",
+        "query": "mi mujer se quiere divorciar  ",
+        "data": {
+            "answer": "Se presenta una situación de posible divorcio, lo que implica cuestiones de disolución matrimonial y posiblemente de custodia y bienes.",
+            "branch": "Derecho de Familia",
+            "specialist": "Abogado especializado en derecho de familia",
+            "confidence": 0.95,
+            "actions": [
+                "Consultar con un abogado de familia",
+                "Recopilar documentación relevante sobre bienes y acuerdos"
+            ]
+        },
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "llm_used": "GPT-4o-mini (OpenAI)",
+            "latency_ms": 2442,
+            "prompt_tokens": 419,
+            "completion_tokens": 89,
+            "total_tokens": 508,
+            "estimated_cost_usd": 0.000116
+        }
+    },
+    {
+        "timestamp": "2026-02-15T12:18:44.215528",
+        "query": "se me escapo la tortuga y hace calor",
+        "status": "filtered",
+        "reasoning": "Se trata de una situación trivial relacionada con la pérdida de una mascota sin implicaciones legales",
+        "suggestion": "Busca a tu tortuga en el área cercana, asegúrate de que tenga acceso a sombra y agua, y considera poner un aviso en la vecindad para que los demás sepan que la estás buscando",
+        "safety_audit": {
+            "is_flagged": false,
+            "analysis": "Clear"
+        },
+        "metrics": {
+            "llm_used": "Llama-3.3-70b (Groq)",
+            "latency_ms": 979,
+            "estimated_cost_usd": 0.0
+        }
+    }
+]
