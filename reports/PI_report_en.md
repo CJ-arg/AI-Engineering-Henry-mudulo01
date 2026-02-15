@@ -6,8 +6,6 @@ The project is designed as a modular pipeline following the "Separation of Conce
 - **Inference Stage**: Processes the query using a specialized legal prompt and the `gpt-4o-mini` model.
 - **Audit Stage**: Calculates business metrics (latency, tokens, cost) and persists them in a JSON database.
 
-
-
 ## 2. Prompting Techniques
 I implemented **Few-Shot Prompting** as the primary strategy.
 - **Why?**: Legal triage requires a specific classification tone. By providing examples of "Labor Law" vs "Civil Law", the model's accuracy increases significantly compared to Zero-Shot.
