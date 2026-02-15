@@ -1,10 +1,13 @@
 import os
 import time
 import json
+import argparse
 from datetime import datetime
 from openai import OpenAI
 from dotenv import load_dotenv
 from safety import is_safe_query
+from legal_filter import apply_legal_filter
+
 
 # 1. We load the variables from the .env file
 load_dotenv()
@@ -47,18 +50,42 @@ def load_prompt(filepath):
         return f.read()
     
 def run_legal_query(user_question):
-    """Processes the user query after passing a safety check."""
+    """Processes the user query using a multi-agent approach with Groq and OpenAI."""
     
-    # 1. Safety Layer (AI Moderation) - Audit mode (non-blocking)
+    # 1. Safety Layer (AI Moderation)
     is_safe, safety_feedback = is_safe_query(user_question)
 
-    # Send the query to OpenAI and measure basic metrics
-    system_prompt = load_prompt("prompts/main_prompt.txt")
+    # 2. Legal Merit Filter (Using Groq/Llama)
+    start_filter = time.time()
+    filter_result = apply_legal_filter(user_question)
+    filter_latency = int((time.time() - start_filter) * 1000)
+    
+    if not filter_result["is_legal_matter"]:
+        # We define the variable EXACTLY here
+        filtered_result = {
+            "timestamp": datetime.now().isoformat(),
+            "query": user_question,
+            "status": "filtered",
+            "reasoning": filter_result["reasoning"],
+            "suggestion": filter_result["suggestion"],
+            "safety_audit": {
+                "is_flagged": not is_safe,
+                "analysis": safety_feedback if not is_safe else "Clear"
+            },
+            "metrics": {
+                "llm_used": "Llama-3.3-70b (Groq)",
+                "latency_ms": filter_latency,
+                "estimated_cost_usd": 0.00 
+            }
+        }
+        
+        save_metrics(filtered_result)
+        return filtered_result
 
-    # We recorded the start time for the latency metric
+    # 3. Specialist Legal Agent (OpenAI)
+    system_prompt = load_prompt("prompts/main_prompt.txt")
     start_time = time.time()
 
-    # API call (The gpt-4o-mini model is cheap and fast)
     try:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -66,16 +93,12 @@ def run_legal_query(user_question):
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_question}
             ],
-            response_format={"type": "json_object"}, # We forced JSON output
-            timeout=15.0 # Set timeout to prevent terminal hanging
+            response_format={"type": "json_object"},
+            timeout=15.0
         )
-        # We calculate latency in milliseconds
+        
         latency_ms = int((time.time() - start_time) * 1000)
-
-        # We extract the text response and convert it to a Python object (dict)
         output_dict = json.loads(response.choices[0].message.content)
-
-        # We extract token metrics
         usage = response.usage
         estimated_cost = calculate_cost(usage.prompt_tokens, usage.completion_tokens)
 
@@ -88,24 +111,39 @@ def run_legal_query(user_question):
                 "analysis": safety_feedback if not is_safe else "Clear"
             },
             "metrics": {
+                "llm_used": "GPT-4o-mini (OpenAI)",
                 "latency_ms": latency_ms,
                 "prompt_tokens": usage.prompt_tokens,
                 "completion_tokens": usage.completion_tokens,
                 "total_tokens": usage.total_tokens,
-                "estimated_cost_usd": estimated_cost # money cost
+                "estimated_cost_usd": estimated_cost
             }
         }
 
         save_metrics(final_result)
-
         return final_result
         
     except Exception as e:
         return {"error": str(e)}
-    
 
 if __name__ == "__main__":
-    # Quick test to see if it works
-    question = "me mordio un perro en la calle"
-    result = run_legal_query(question)
+    # 1. Create the parser object
+    parser = argparse.ArgumentParser(description="Legal Assistant CLI")
+    
+    # 2. Add the 'query' argument. 
+    # '-q' is the short version, '--query' the long one.
+    parser.add_argument(
+        '-q', '--query', 
+        type=str, 
+        required=True, 
+        help='The legal situation to analyze'
+    )
+
+    # 3. Capture the arguments
+    args = parser.parse_args()
+    
+    # 4. Use the captured argument in your existing function
+    result = run_legal_query(args.query)
+    
+    # 5. Show the final result
     print(json.dumps(result, indent=2, ensure_ascii=False))
